@@ -15,7 +15,7 @@ VERIFY VERDICT: CLEAN — Blocker:0 Major:0 Minor:0 Trivial:2
 ### Findings
 
 - **Blocker / Major / Minor:** none open.
-- **Trivial — accepted-known:** the new retention section is English-only. Recommendation: translate when localized prose is requested.
+- **Trivial — accepted-known:** the evidence-retention section in `docs/artifact-workflow-guide.md` has no Chinese counterpart. Explanatory additions in `docs/zh/grill-gstack-absorption.md` are Simplified Chinese; code identifiers and English reference targets are preserved. Recommendation: extend translation coverage to the separate retention section when requested.
 - **Trivial — accepted-known:** two canonical spec Purpose paragraphs still describe historical parity machinery. Recommendation: the upstream spec-sync owner updates these non-normative descriptions; the explicit retirement/replacement deltas change their active requirements.
 
 ## Delivered surface

@@ -13,7 +13,7 @@ Reviewed commit: `cf9bdebd078b65ba387dd028b02af30921b5c5bd` against `upstream/de
 | R1-3 | Major | Required ephemera observations need a concrete retention action before saved archive planning; local keep-ephemera alone does not deliver them. | Accepted. Specify authorized, verified evidence snapshots or explicitly approved local-only retention; never silently authorize destructive cleanup. |
 | R1-4 | Minor | Shared dispatched-report-only wording also reaches implementer/planner/ship workers with broader write authority. | Accepted. Limit it to report-only experts and define LEAD handling of their retention notices. |
 | R1-5 | Minor | Deleting the parity file removes registry-wide text/copy assertions as well as hashes. | Dismissed under the explicit repository testing policy: permanent wording, wiring, copy, and source-text assertions must not be retained or re-pinned. Real generation/install and downstream consumer checks remain. |
-| R1-6 | Trivial | The Chinese workflow guide has no translation of the new English evidence section. | Accepted-known documentation limit. The user requested English authored material; no broad translation work is included. Existing stale parity directions are separately in scope under R1-1. |
+| R1-6 | Trivial | The Chinese workflow guide has no counterpart to the new evidence-retention section in `docs/artifact-workflow-guide.md`. | Accepted-known translation coverage gap for that section. Explanatory additions already present in `docs/zh/grill-gstack-absorption.md` are Simplified Chinese. |
 
 The reviewer checked all changed source and composition paths, including orchestration header splitting, seven full-preamble experts, investigate's direct inclusion, twelve direct workflows, three inherited orchestration consumers, archive cleaner behavior, and dispatch restrictions.
 
@@ -25,7 +25,7 @@ The initial Spec axis found no findings across 8 requirements and 30 scenarios. 
 
 - R1-1 through R1-4: fixed by `SpecAlignment` / `GuidanceFix` and independently confirmed by Opus and Sol.
 - R1-5: dismissal independently confirmed; no uncovered consumer defect was identified.
-- R1-6: accepted-known English-only documentation limitation.
+- R1-6: accepted-known missing Chinese counterpart to the evidence-retention section in `docs/artifact-workflow-guide.md`, not permission to leave English explanatory prose in `docs/zh/`.
 - Round 2 N1 (Minor), baseline recency ambiguity: fixed by the parent; Opus round 3 confirmed observation-timestamp selection restricted to baseline records.
 - Round 2 N2 (Minor), code-producing goal-spine retention: fixed by the parent; Opus round 3 confirmed snapshot routing before saved archive planning without changing live-state ownership.
 - Round 2 N3 (Trivial), two non-normative Purpose descriptions: accepted-known for the upstream spec-sync owner.

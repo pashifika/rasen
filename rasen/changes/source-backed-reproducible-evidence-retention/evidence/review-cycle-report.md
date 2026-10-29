@@ -17,7 +17,7 @@ Three rounds, Tier B, maximum 3. Independent OMP contexts supplied the standards
 
 The verification refinement changed the delta encoding after strict validation demonstrated that MODIFIED preserves existing scenario identities. It did not weaken the validator, restore hash tests, alter runtime code, or change canonical specs. The ADR records the decision. Final mapping: 8 capabilities, 15 active requirements, 6 retirements, 49 scenarios.
 
-Accepted-known: R1-6, new documentation remains English; N3, two non-normative canonical Purpose paragraphs await owner-controlled spec synchronization. Neither authorizes archive or spec sync in this delivery.
+Accepted-known: R1-6, the evidence-retention section in `docs/artifact-workflow-guide.md` has no Chinese counterpart; N3, two non-normative canonical Purpose paragraphs await owner-controlled spec synchronization. Explanatory additions in `docs/zh/grill-gstack-absorption.md` are Simplified Chinese. Neither known issue authorizes archive or spec sync in this delivery.
 
 ## Verification scope and evidence
 
