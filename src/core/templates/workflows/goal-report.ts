@@ -38,7 +38,7 @@ Write a final report (e.g. \`report.md\` or the artifact named in goal-plan.md) 
 ## Constraints
 
 - Read \`goal-run.json\` (from the resolved ephemera location per the Input section above) as the source of truth; do not infer outcomes from the work product alone.
-- Keep the authoritative loop spine in place. Reference the originals needed to audit the outcome and resolve their retention before ephemera cleanup; a fresh gate run cannot recreate the historical judgments.
+- Keep the authoritative loop spine in place. For the historical judgments the report depends on, follow the shared **Snapshot required ephemera before cleanup** procedure: an authorized writer captures and byte-verifies an immutable evidence snapshot, records the original locator/size/SHA-256 and snapshot reference, and leaves live \`goal-run.json\` in place until the existing cleaner decision. Complete this before saving an archive plan; if outside this stage's permissions, report the unresolved retention to the LEAD for an authorized writer. Explicitly approved LOCAL-only \`--keep-ephemera\` on the saved preview is not archive delivery. Without either authorized path, do not authorize cleanup. A fresh gate run cannot recreate the historical judgments.
 - If the implementer's last round was a HANDOFF (no gate record yet), say so — do not guess whether it would have passed.
 - This stage does NOT run another gate round or edit the work product. It reports.`;
 
