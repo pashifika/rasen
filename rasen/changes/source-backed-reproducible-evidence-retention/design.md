@@ -36,6 +36,13 @@ Add one small shared template module under `src/core/templates/` for the evidenc
 
 Required coverage is planning (`propose`, `explore`), collection (`investigate`, `benchmark`, and report-producing experts through their shared preamble), implementation/orchestration evidence production, verification (`verify-change`, `verify-enhanced`, `review-cycle`), and evidence consumption (`ship`, `archive-change`, bulk archive, retention guidance). Reconcile consumer-specific instructions rather than appending text that contradicts them. Preserve standalone report locations and dispatched workers' canonical-report-only write restriction.
 
+Delivered consumer list:
+
+- Direct workflow imports: `propose`, `explore`, `apply-change`, `verify-change`, `verify-enhanced`, `ship`, `archive-change`, `bulk-archive-change`, `retain`, `goal-plan`, `goal-iterate`, `goal-report`.
+- Orchestration header: `auto`, `goal`, `review-cycle`; selective bundles inherit the header once.
+- Expert `PREAMBLE`: `review`, `cso`, `qa`, `qa-only`, `benchmark`, `design-review`, `codex`.
+- Direct expert import: `investigate`; unrelated dialogue experts do not inherit it.
+
 Alternative: a machine-enforced recipe format and new CLI commands. Rejected because the immediate problem is what agents collect, duplicate, and read; introducing a storage/execution platform is unnecessary. The Module's Interface is the emitted evidence contract and its integration points, with Locality provided by a shared source.
 
 ### 2. Classify reproducibility before choosing retention
