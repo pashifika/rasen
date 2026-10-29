@@ -16,8 +16,12 @@
  * data-driven pipeline registry later; this text does not change when the
  * source of the DAG changes.
  */
+import { EVIDENCE_RETENTION_GUIDANCE } from '../evidence-retention.js';
 
-export const ORCHESTRATION_PLAYBOOK = `## Orchestration Playbook — LEAD drives role-isolated subagents
+// The shared header reaches auto, goal, and review-cycle exactly once per bundle.
+export const ORCHESTRATION_PLAYBOOK = `${EVIDENCE_RETENTION_GUIDANCE}
+
+## Orchestration Playbook — LEAD drives role-isolated subagents
 
 You are the **LEAD**. You orchestrate; you do NOT author WHOLE stage outputs yourself. **Exception:** you MAY apply a **trivial inline fix** per Step E.2 (a one-character typo, an obvious rename) — which is then re-reviewed by a non-author like any other fix; a trivial finding does NOT warrant spawning a separate fixer worker. Anything larger than a trivial inline fix is authored by a dispatched worker, never by you. Each pipeline stage is dispatched to a **leaf worker** subagent that invokes that stage's existing Rasen skill and returns its result to you. Workers never spawn their own subagents — you are the sole orchestrator (flat hierarchy: LEAD + leaf workers).
 
@@ -208,9 +212,9 @@ First resolve the change's landing directories: run \`rasen status --change <nam
 **Per-class blackboard.** Each artifact lands in its class's directory, always at the ABSOLUTE path the payload reports — never at a guessed cwd-relative Change path, or a Store-selected run strands it where a resumer cannot find it:
 
 - **Review material** — proposal.md, design.md, tasks.md, specs/, planning-context.md — under \`changeRoot\`.
-- **Evidence** — review-report.md, cso-report.md, qa-report.md, benchmark-report.md, design-review-report.md, review-cycle-report.md, verification-report.md, ship-log.md — under \`evidenceDir\` (\`<changeRoot>/evidence/\`), so it travels with the change into the Archive.
+- **Evidence** — review-report.md, cso-report.md, qa-report.md, benchmark-report.md, design-review-report.md, review-cycle-report.md, verification-report.md, ship-log.md, and required original observations — under \`evidenceDir\` (\`<changeRoot>/evidence/\`), so it travels with the change into the Archive. Reference originals already held by an approved retention owner instead of copying them.
 - **Handoff** — handoff documents and relay prompts — under \`handoffDir\` (\`<changeRoot>/handoff/\`).
-- **Ephemera** — run-state (auto-run.json / portfolio-run.json / the goal-loop run artifact), raw logs, captures, and other regenerable intermediates — under \`ephemeraDir\` (\`<executionRoot>/.rasen/changes/<name>/ephemera/\`, in the code checkout this run operates on). Whether it enters Git is the user's \`.gitignore\` decision alone; Rasen writes no ignore rules.
+- **Ephemera** — run-state (auto-run.json / portfolio-run.json / the goal-loop run artifact), disposable collection scratch, and regenerable intermediates — under \`ephemeraDir\` (\`<executionRoot>/.rasen/changes/<name>/ephemera/\`, in the code checkout this run operates on). Raw logs/captures needed to audit a claim are retained observations, not disposable by format. Keep authoritative run-state in place and resolve retention of any required observations it owns before cleanup. Whether ephemera enters Git is the user's \`.gitignore\` decision alone; Rasen writes no ignore rules.
 
 A store-selected run splits the two roots: review material, evidence, and handoff land store-side at the payload's absolute paths, while ephemera lands in the code checkout's ephemera directory.
 

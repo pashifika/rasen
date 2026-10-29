@@ -28,6 +28,8 @@ When the user types \`/benchmark\`, run this skill.
 
 ### Phase 1: Setup
 
+Standalone mode only (dispatched mode writes no \`.rasen/benchmark-reports/\` files):
+
 \`\`\`bash
 mkdir -p .rasen/benchmark-reports
 mkdir -p .rasen/benchmark-reports/baselines
@@ -90,6 +92,7 @@ Save metrics to baseline file:
   "url": "<url>",
   "timestamp": "<ISO>",
   "branch": "<branch>",
+  "commit": "<full commit SHA>",
   "pages": {
     "/": {
       "ttfb_ms": 120,
@@ -111,7 +114,9 @@ Save metrics to baseline file:
 }
 \`\`\`
 
-Write to \`.rasen/benchmark-reports/baselines/baseline.json\`.
+**Standalone mode:** write to \`.rasen/benchmark-reports/baselines/baseline.json\`. A baseline is a retained observation; recapturing produces a new observation. Do not overwrite a baseline needed by a saved report until an explicitly authorized retention disposition preserves the original bytes and their stable report reference. Reports cite the baseline by locator, byte size, and SHA-256.
+
+**Dispatched mode:** write no baseline file. Record the measurements the result depends on once in \`benchmark-report.md\`; report any retention you cannot perform there to the LEAD.
 
 ### Phase 5: Comparison
 
@@ -210,7 +215,7 @@ TREND: Performance degrading. LCP doubled in 8 days.
 
 **Dispatched mode:** write ONLY \`benchmark-report.md\` in the change's evidence directory (the \`evidenceDir\` reported by the CLI, per the PREAMBLE's dispatched-mode rule; sticky-legacy: a report already at a legacy location is updated in place), each result tagged with a canonical severity (a \`REGRESSION\` crossing a hard budget / FAIL row → Blocker, a timing or size \`REGRESSION\` → Major, a \`WARNING\` → Minor, \`OK\` and grade-only deltas → Trivial); skip the \`.rasen/benchmark-reports/\` writes. Then return.
 
-**Standalone mode.** Write to \`.rasen/benchmark-reports/{date}-benchmark.md\` and \`.rasen/benchmark-reports/{date}-benchmark.json\`.
+**Standalone mode.** Write to \`.rasen/benchmark-reports/{date}-benchmark.md\` and \`.rasen/benchmark-reports/{date}-benchmark.json\`. The \`.json\` holds this run's measurements; the \`.md\` carries the decision, aggregates, limits, and recipe, and references the \`.json\` and baseline instead of copying their arrays.
 
 ## Important Rules
 
