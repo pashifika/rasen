@@ -98,6 +98,16 @@ Guidance SHALL treat the original observations required to audit a historical cl
 
 #### Scenario: Legacy ephemera contains a required original
 
-- **WHEN** a required historical observation is discovered in an existing ephemera location
-- **THEN** guidance SHALL preserve it and resolve its retention before authorizing cleanup
-- **AND** it SHALL use supported existing disposition handling rather than hand-editing manifests or changing archived bytes
+- **WHEN** a required historical observation in an existing ephemera location must be delivered with the archive
+- **THEN** an authorized writer SHALL capture a new immutable evidence snapshot under the CLI-resolved `evidenceDir` before saving an archive plan, verify its byte size and SHA-256 against the captured original, and record both references in the canonical report
+- **AND** the authoritative live run-state SHALL remain in place until the existing cleaner decision
+- **AND** a report-only expert SHALL report this retention need to the LEAD rather than exceed its canonical-report-only permission
+- **AND** copying SHALL require source access and destination write/publication authorization
+
+#### Scenario: Required ephemera is retained only locally
+
+- **WHEN** local-only retention is explicitly approved instead of delivery with the archive
+- **THEN** guidance SHALL place `--keep-ephemera` on the saved preview while preserving the selected scope and intent, not on `--apply-plan`
+- **AND** it SHALL state that preserved execution-local files are not archive payload evidence
+- **AND** if neither an authorized evidence snapshot nor approved local retention is available, cleanup SHALL NOT be authorized
+- **AND** existing manifests and archived bytes SHALL NOT be hand-edited

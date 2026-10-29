@@ -34,7 +34,7 @@ The product change is a workflow guidance contract, not a new archival storage o
 
 Add one small shared template module under `src/core/templates/` for the evidence-retention instructions. Follow the existing shared-string pattern, with a named exported constant and an explicit consumer list. Reuse it from the expert preamble and the relevant workflow templates; do not make workflows import the entire expert preamble. Include it once per emitted skill, including orchestration-embedded variants.
 
-Required coverage is planning (`propose`, `explore`), collection (`investigate`, `benchmark`, and report-producing experts through their shared preamble), implementation/orchestration evidence production, verification (`verify-change`, `verify-enhanced`, `review-cycle`), and evidence consumption (`ship`, `archive-change`, bulk archive, retention guidance). Reconcile consumer-specific instructions rather than appending text that contradicts them. Preserve standalone report locations and dispatched workers' canonical-report-only write restriction.
+Required coverage is planning (`propose`, `explore`), collection (`investigate`, `benchmark`, and report-producing experts through their shared preamble), implementation/orchestration evidence production, verification (`verify-change`, `verify-enhanced`, `review-cycle`), and evidence consumption (`ship`, `archive-change`, bulk archive, retention guidance). Reconcile consumer-specific instructions rather than appending text that contradicts them. Preserve standalone roots and dispatched report-only experts' canonical-report-only write restriction; other dispatched writers retain their stage permissions.
 
 Delivered consumer list:
 
@@ -84,13 +84,19 @@ A current report contains the decision, essential aggregates, limits, and refere
 
 This Change does not retroactively delete data. For future outputs, avoid creating unnecessary durable copies. Any later cleanup is separately authorized and uses existing ownership/disposition rules.
 
+New standalone benchmark captures use one Windows-safe UTC `YYYY-MM-DDTHHmmssSSSZ-<uuid>` identifier in the existing report filename forms. Create immutable, non-overwriting measurement and baseline records. A baseline capture has one authoritative baseline JSON, not a duplicate run JSON. Reports cite the exact original; `baseline.json` may remain a byte-identical current working copy for compatible readers, not a pointer. Preserve required legacy bytes before replacing a working copy and record `old locator + captured SHA-256 -> retained locator`, with byte size, in the new report. Leave the working file unchanged when access/authorization is unavailable or an exact historical locator must remain unchanged; select the new immutable baseline directly.
+
 ### 5. Refine lifecycle guidance without changing placement machinery
 
 Keep all seven classes and existing CLI-resolved roots. Irreplaceable observations needed for a claim are evidence, regardless of extension. New local originals without an existing approved retention destination stay with evidence; this is the safe default, not a promise that all raw data disappears from archive payloads. Deterministic derived files and disposable collection scratch use ephemera. Generator source follows project code conventions or the existing probe fallback; an already established verification harness delivered with an archive remains evidence.
 
 An already retained private/external original may be referenced without copying it, but its ownership and availability must be explicit. A digest is not a backup, download permission, or receiver verification. This Change introduces no external placement option and does not move new payloads to an invented location.
 
-If required legacy observations are found in ephemera, preserve them under the existing supported disposition and resolve retention before authorizing cleanup. Do not hand-edit cleaner manifests or infer safety from filenames. Existing archives remain immutable, and absence of the new recipe is not a retrospective archive failure.
+Required originals in ephemera follow the shared authorized-retention procedure in `src/core/templates/evidence-retention.ts`: capture a new immutable evidence snapshot, verify its byte size and SHA-256 against the captured original, and bind the report to that snapshot before saving an archive plan. Keep authoritative live run-state in place until the existing cleaner decision. Report-only experts record unmet retention needs for the LEAD to route to an authorized writer. Copying requires source access and destination write/publication authority.
+
+Explicitly approved local-only retention uses `--keep-ephemera` on the saved preview, not `--apply-plan`; it preserves execution-local files without adding them to the archive payload. If neither an authorized snapshot nor approved local retention is available, do not authorize cleanup. Do not hand-edit cleaner manifests or infer safety from filenames. Existing archives remain immutable, and absence of the new recipe is not a retrospective archive failure.
+
+The source-backed ownership and compatibility decision is recorded in [ADR: Retain observations through existing ownership seams](adr-retention-boundaries.md). It changes guidance, not archive-engine behavior.
 
 ### 6. Treat recipes as data, with portable and private references
 
@@ -108,7 +114,9 @@ After implementation, build and install/generate the affected skills into an iso
 4. Treat a new timing run as new evidence, leaving the original outcome intact.
 5. Confirm existing verdict/test-evidence consumption and platform-aware generation behavior remain intact.
 
-Use the established behavioral generation/installation checks. Do not add wording snapshots or blindly re-pin template hashes as proof of behavior; remove affected incidental wording/hash assertions when they conflict with the repository's testing policy. Keep smoke artifacts disposable and record only the commands, outcomes, and limits. A full performance campaign or mutation of the motivating archive is unnecessary.
+Use established behavioral generation/installation checks and recorded inspection of actual installed instructions. Retire `test/core/templates/skill-templates-parity.test.ts`; do not replace it with permanent prompt-string, wiring, or hash assertions. Hash re-pinning establishes changed bytes, not correct retention authority or historical evidence identity. Keep smoke artifacts disposable and record only commands, outcomes, and limits. A full performance campaign or mutation of the motivating archive is unnecessary.
+
+Reconcile seven active requirement blocks across `expert-template-inlining`, `workflow-template-parity` (two blocks), `verify-ship-evidence`, `expert-dispatch-contract`, `expert-dialogue-override`, and `methodology-expert-fusion`. Explicitly REMOVE the six hash-gate requirements with migration notes and ADD their generated-delivery replacements; obsolete hash-specific scenarios are intentionally retired, not silently dropped from a MODIFIED block. The methodology reference-cleanliness requirement remains MODIFIED with all existing scenario identities. Preserve substantive generation, severity, dialogue, mode/routing, build/update, Store selection, handoff precedence, and consumer contracts. The historical one-time inline-migration equivalence requirement is unchanged. Canonical specs remain owner-controlled; these deltas do not synchronize or archive themselves.
 
 ## Risks / Trade-offs
 

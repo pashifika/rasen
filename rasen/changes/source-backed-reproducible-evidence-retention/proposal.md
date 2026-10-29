@@ -10,6 +10,7 @@ Evidence packages become expensive to archive and review when reproducible outpu
 - Replace duplicated deterministic fixtures and derived detail with recipes and references when regeneration has been demonstrated. Preserve the minimum observation set needed to audit a historical claim, including failed and incomplete outcomes.
 - Clarify the existing seven-class placement guidance so retention depends on a file's use and lifecycle, not on its being JSON, stdout, or a raw capture. Preserve existing placement roots, standalone behavior, Store selection, and sticky-legacy handling.
 - Keep summaries bounded by decisions and evidence references rather than by the number of samples. Establish the intended claim and stopping condition before a collection campaign; this does not reduce required statistical samples or verification gates.
+- Retire the permanent template function/content hash gate and reconcile its seven active requirement blocks across six capabilities. Validate actual generated/installed skills and changed behavior without replacement prompt-string or wiring tests.
 
 ## Capabilities
 
@@ -20,6 +21,12 @@ Evidence packages become expensive to archive and review when reproducible outpu
 ### Modified Capabilities
 
 - `file-placement`: Clarify how irreproducible observation evidence differs from disposable collection output and regenerable intermediates, without adding a file class or changing archive-engine disposition semantics.
+- `expert-template-inlining`: Replace the 19-expert hash gate with generation/installation validation; preserve inline source, shared blocks, migration evidence, and build behavior.
+- `workflow-template-parity`: Replace workflow and Direction hash mandates while preserving build/update delivery, canonical source, handoff precedence, cross-references, and Store selection.
+- `verify-ship-evidence`: Replace the `chrome-use` hash mandate without changing verification severities, verdicts, or test-evidence consumers.
+- `expert-dispatch-contract`: Validate emitted mode restrictions and report routing without hash re-pinning.
+- `expert-dialogue-override`: Validate emitted dialogue and question-flow rules without hash re-pinning.
+- `methodology-expert-fusion`: Replace only the parity scenario under live-reference hygiene; preserve methodology registration, conditional references, and capture behavior.
 
 ## Impact
 

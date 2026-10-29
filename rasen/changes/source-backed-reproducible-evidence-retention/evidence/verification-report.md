@@ -2,7 +2,21 @@
 
 ## Status
 
-Implementation and all 15 Change tasks are complete. Local verification and the Windows/Linux CI suites passed. CI is not fully green: two macOS jobs were cancelled before acquiring a hosted runner; those remote checks remain unverified.
+All 17 Change tasks are complete. The final generated guidance passed isolated CLI installation/update and synthetic retention checks. Local automated checks and Windows/Linux CI results from implementation are recorded below with their scope; the ship gate runs fresh checks against the committed delivery tree. The earlier CI run is not fully green: two macOS jobs were cancelled before acquiring a hosted runner.
+
+| Dimension | Result |
+| --- | --- |
+| Completeness | 17/17 tasks; 8 capabilities; 15 active requirements (11 ADDED, 4 MODIFIED), with 6 explicit retirements |
+| Correctness | 15/15 active requirements and 49 scenarios assessed through source/spec inspection and the applicable smoke evidence below; this is not a claim of 49 runtime tests |
+| Coherence | Shared guidance, existing ownership/report contracts, and the retention ADR align; canonical specs remain unchanged pending owner-controlled synchronization |
+
+VERIFY VERDICT: CLEAN — Blocker:0 Major:0 Minor:0 Trivial:2
+
+### Findings
+
+- **Blocker / Major / Minor:** none open.
+- **Trivial — accepted-known:** the new retention section is English-only. Recommendation: translate when localized prose is requested.
+- **Trivial — accepted-known:** two canonical spec Purpose paragraphs still describe historical parity machinery. Recommendation: the upstream spec-sync owner updates these non-normative descriptions; the explicit retirement/replacement deltas change their active requirements.
 
 ## Delivered surface
 
@@ -50,7 +64,7 @@ GitHub's cancellation annotation was `The job was not acquired by Runner of type
 | Variable metadata; new timing observations | Two fresh 10,000-hash timing runs produced distinct run IDs and elapsed values (10.072416 ms and 10.388917 ms). Only `stable.iterations=10000` was compared as stable; neither run replaced the historical fixture input. This illustrates mode separation, not a performance claim. |
 | Recorded commands are data | Read an untrusted recipe containing a harmless file-creation canary command without executing it; the canary remained absent. This is a manual read-only inspection smoke, not a sandbox or automatic-execution guarantee. |
 | Path bases and platform meaning | Actual generation and recipe execution succeeded from an explicit macOS repository path containing spaces. Documentation uses argument-vector boundaries, not an assumed POSIX shell. Windows generation/installation, path, and placement coverage ran in the successful CI shards; the disposable recipe itself ran only on macOS. |
-| Dispatched/standalone reports; legacy reports and immutable archives | Installed benchmark guidance retains canonical `benchmark-report.md` only for dispatched workers, with no standalone baseline writes. Standalone destinations remain unchanged. Shared guidance adds no legacy recipe gate or archive mutation permission; real archive-consumer integration tests passed. |
+| Dispatched/standalone reports; legacy reports and immutable archives | Installed benchmark guidance retains canonical `benchmark-report.md` only for dispatched workers, with no standalone baseline writes. Standalone directories and legacy reads remain; new originals have immutable collision-free names, with `baseline.json` a disposable compatibility cache. Shared guidance adds no legacy recipe gate or archive mutation permission; real archive-consumer integration tests passed. |
 | File classes, Store split, planning-only roots, handoff and sticky legacy | Resolver code is unchanged; file-placement tests passed. Shared guidance and orchestration distinguish required observations from disposable scratch and use CLI-resolved roots. Store selection remains in installed skills; no live Store was created. |
 | Raw JSON, mutable fetched inputs, regenerable detail, source and legacy ephemera | Propose/explore and expert instructions preserve required originals once, identify availability, reference committed generators, and resolve required legacy-ephemera retention before cleanup. Existing verification-harness classification remains unchanged. |
 
@@ -59,3 +73,18 @@ GitHub's cancellation annotation was `The job was not acquired by Runner of type
 The recipe fixture was an isolated disposable repository at commit `2d3191fa496657ed33000b0c75ea0118b2bb770a`; original synthetic input was 200 bytes with SHA-256 `5d4c38969111afb9caef4fbde7b1a391eb122927089ea102d02f42cb4550a46e`. Temporary source, installed skills, and data were removed after the smoke. This receipt records the check performed; that temporary commit is not a published reproduction dependency.
 
 The MadoPilot archive and collectors, archive journal cost, generated relative-link defect, already-synchronized ADDED validation defect, existing archive bytes, and unrelated working-tree edits were not changed. No archive-performance improvement or storage-reduction measurement is claimed. The full test suite was not run locally; the Linux full suites and Windows shards ran in CI. Local verification targeted generation, installation, placement, workflow composition, archive consumers, and byte hygiene.
+
+## Review follow-up verification
+
+The final source was built with `pnpm run build`. In a disposable project with spaces in its path and isolated HOME/XDG directories, the actual CLI executed `init --tools omp --profile full`, `update`, `new change retained-observation-smoke`, `status --change retained-observation-smoke --json`, and `update --force`. The last command installed the final baseline-selection and goal-spine instructions after the same-version development build. All 23 affected consumers contained the shared block once; emitted benchmark, apply, review-cycle, and goal instructions retained their role and placement boundaries.
+
+A disposable `node --input-type=module -e` harness manually exercised the documented operations, using paths returned by the fixture's status:
+
+- An authorized 66-byte snapshot had SHA-256 `00b0425be461fa4175e49d3a5584c338bd0e215c0851cd1129edcfb0ff66a991`. Exclusive creation refused an overwrite; the snapshot remained unchanged after the live source gained a new observation, and the live source stayed in place.
+- Actual built `classifyEphemera` and `projectArchiveCleaner` selected `raw-samples.json` for ordinary cleanup and selected no deletion with `keepEphemera=true`. This runtime check confirms local preservation, not archive delivery; payload separation and saved-plan option ownership were independently source-reviewed.
+- Two synthetic baseline captures with the same timestamp prefix received distinct Windows-safe UUID-suffixed filenames. Their immutable records and reports coexisted; the prior working baseline and historical report bytes stayed unchanged. The retained legacy bytes had SHA-256 `ff4e21e391053ec59bc15efcac792a3e0df7eeeda617d3472147d40b7aa23ff6`.
+- A manual three-record selection example chose the newer baseline observation, excluding a later-named copy of an older baseline and a newer non-baseline run. The emitted goal bundle explicitly requires a snapshot of the resolved `loop.runArtifact` when a ship log/report cites its gate judgments.
+
+These are synthetic manual executions of agent instructions, not browser performance measurements, a recipe executor, or proof that an agent will obey every clause. Snapshot/selection source and input were disposable, not published reproduction dependencies. No live archive was planned or applied.
+
+`RASEN_LANG=en RASEN_TELEMETRY=0 node bin/rasen.js validate source-backed-reproducible-evidence-retention --strict` passed with explicit retirement/replacement deltas. The ADR records why hash-specific scenario retirement uses REMOVED plus ADDED rather than incomplete MODIFIED blocks. Independent review dispositions are in `review-cycle-report.md`. Current-tree automated ship-gate results belong to `ship-log.md`; the earlier CI results above must not be represented as a final-tree CI run.

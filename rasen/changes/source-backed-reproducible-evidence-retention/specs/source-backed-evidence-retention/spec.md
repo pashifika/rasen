@@ -100,15 +100,30 @@ Rasen SHALL deliver consistent evidence-retention guidance through generated pla
 
 #### Scenario: Dispatched expert reports its results
 
-- **WHEN** a dispatched expert produces evidence
-- **THEN** it SHALL incorporate the relevant recipe and observation references into its allowed canonical report
-- **AND** it SHALL retain the dispatched worker's existing output and execution restrictions
+- **WHEN** a dispatched report-only expert produces evidence
+- **THEN** it SHALL incorporate the relevant recipe and observation references into its allowed canonical report and report unmet retention needs for the LEAD to route to an authorized writer
+- **AND** it SHALL retain its existing output and execution restrictions without imposing canonical-report-only scope on other authorized stage writers
 
 #### Scenario: Standalone expert has no active Change
 
 - **WHEN** a standalone benchmark or investigation records evidence
 - **THEN** it SHALL use its established standalone location and include the same relevant identity and retention information
 - **AND** it SHALL not invent a Change or Store execution root
+
+#### Scenario: Standalone benchmark captures repeat
+
+- **WHEN** standalone benchmark runs or baseline captures repeat, including on the same day
+- **THEN** new completed records SHALL use collision-free, Windows-safe identifiers within the established standalone roots and SHALL NOT overwrite historical originals
+- **AND** reports SHALL cite immutable measurement and baseline locators, byte sizes, and SHA-256 values rather than a mutable working baseline alone
+- **AND** a baseline capture SHALL retain one authoritative baseline JSON without duplicating its measurements in a run JSON
+
+#### Scenario: Compatible working baseline is refreshed
+
+- **WHEN** a standalone benchmark refreshes `baseline.json` for existing readers
+- **THEN** it SHALL remain a working metrics copy, not a pointer schema or a second authoritative observation
+- **AND** required legacy bytes SHALL first be retained and byte-verified with an old-locator/digest-to-retained-locator mapping and byte size in the new report
+- **AND** if source access or authorization is unavailable, or an existing report requires the original locator unchanged, the working file SHALL remain in place and the new capture SHALL use its immutable baseline directly
+- **AND** historical reports SHALL NOT be rewritten
 
 #### Scenario: Existing report is consumed by ship or archive
 

@@ -24,3 +24,8 @@
 
 - [x] 4.1 Update the existing user-facing file-placement/workflow documentation and release changelog with the source-backed retention contract, compact recipe example, historical-observation limits, and unchanged archive/Git boundaries. Keep shipped skill documentation consistent with its template source through the existing generation route.
 - [x] 4.2 Record a compact verification report mapping the new capability and file-placement scenarios to the actual delivered guidance and smoke results. Leave all historical archives and both separately reported archive defects unchanged; do not claim archive performance gains or MadoPilot collector changes.
+
+## 5. Review follow-up
+
+- [x] 5.1 Align seven stale parity-gate requirement blocks across six capabilities through six explicit retirements/replacements and one complete MODIFIED delta; preserve substantive behavior and canonical-spec ownership. Update the capability list, design/test guidance, English/Chinese parity documentation, and English retention guide without replacement prompt-string, wiring, or hash tests.
+- [x] 5.2 Verify the operational retention follow-up through actual generated/installed output: authorized byte-verified snapshots before saved plans, local-only `--keep-ephemera` on previews, report-only versus other stage permissions, same-day immutable benchmark/baseline records, and legacy working-baseline compatibility. Record commands, outcomes, and limits in the parent-owned verification evidence before marking this follow-up verified.
